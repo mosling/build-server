@@ -8,7 +8,7 @@ ADD . /work
 
 # Install any needed packages specified in requirements.txt
 RUN apt update && \
-apt upgrade -y \
+apt upgrade -y && \
 apt install -y build-essential git bzip2 python3 python3-pip cmake wget && \
 apt clean && \
 pip3 install requests && \

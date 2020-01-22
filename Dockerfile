@@ -4,6 +4,8 @@ FROM ubuntu:18.04
 LABEL maintainer="Steffen Köhler <stefen.koehler@gmail.com>"
 LABEL Description="Image for building binaries for arm and ti using cmake and python3"
 
+ENV CMAKE_VERSION "3.16.3"
+
 WORKDIR /work
 ADD . /work
 
@@ -16,9 +18,9 @@ RUN set -xe \
     \
 # install current cmake
     && apt install -y libssl-dev \
-    && wget https://github.com/Kitware/CMake/releases/download/v3.16.3/cmake-3.16.3.tar.gz \
-    && tar -zxvf cmake-3.16.3.tar.gz \
-    && cd cmake-3.16.3 \
+    && wget https://github.com/Kitware/CMake/releases/download/v3.16.3/cmake-${CMAKE_VERSION}.tar.gz \
+    && tar -zxf cmake-${CMAKE_VERSION}.tar.gz \
+    && cd cmake-${CMAKE_VERSION} \
     && ./bootstrap \
     && make install \
     && cd .. \
@@ -30,6 +32,9 @@ RUN set -xe \
     && wget -qO- https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2019q4/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2 | tar -xj \
     \
 # starting cleanup
-    && apt clean 
+    && apt -y autoremove \
+    && apt clean \
+    && rm -rf cmake-${CMAKE_VERSION} \
+    && rm -f cmake-${CMAKE_VERSION}.tar.gz
 
-ENV PATH "/work/gcc-arm-none-eabi-8-2019-q3-update/bin:$PATH"
+ENV PATH "/work/gcc-arm-none-eabi-9-2019-q4-major/bin:$PATH"

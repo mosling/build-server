@@ -4,10 +4,6 @@ FROM ubuntu:18.04
 LABEL maintainer="Steffen Köhler <stefen.koehler@gmail.com>"
 LABEL Description="Image for building projects for arm using cmake, python3 and asciidoc"
 
-ENV CMAKE_VERSION "3.18.4"
-ENV http_proxy "http://steffenk:jat2019Jun01!@proxy.jat-gmbh.de:8080"
-ENV https_proxy "http://steffenk:jat2019Jun01!@proxy.jat-gmbh.de:8080"
-
 WORKDIR /work
 ADD . /work
 
@@ -35,8 +31,6 @@ RUN set -xe \
     \
 # starting cleanup
     && apt-get -y autoremove \
-    && apt-get clean \
-    && rm -rf cmake-${CMAKE_VERSION} \
-    && rm -f cmake-${CMAKE_VERSION}.tar.gz
+    && apt-get clean
 
 ENV PATH "/work/gcc-arm-none-eabi-9-2019-q4-major/bin:$PATH"

@@ -20,6 +20,7 @@ RUN set -xe \
 # install ruby/java runtime and asciidoctor with pdf and diagrams
     && apt-get install -y ruby \
     && apt-get install -y default-jre \
+    && apt-get install -y graphviz \
     && gem install asciidoctor-pdf \
     && gem install rouge coderay asciidoctor-diagram\
     \

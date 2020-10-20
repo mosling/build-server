@@ -4,9 +4,13 @@ This is a image build on top of an Ubuntu LTS release (see https://wiki.ubuntu.c
 
 We adding some build dependencies:
 
-* *cmake* 3.16.3 from source because the Ubuntu package supports version 3.12.1 which hasn't all target methods implemented. 
+* *cmake* install cmake using https://blog.kitware.com/cmake-python-wheels/
 * *git* for accessing the source code
 * *python* 3.x with the requests module to handle REST-API calls
 * *gcc-arm-none-eabi*  9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599] from https://developer.arm.com
+* *asciidoctor-pdf* to render `adoc` files to `pdf`
+** *ruby* as ascidoctor runtime language
+** *java* runtime for ascidoctor diagrams
+** *asciidoctor-diagrams*, *rouge* and *coderay* plugins
 
 
